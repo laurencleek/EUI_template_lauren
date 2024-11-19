@@ -1,0 +1,194 @@
+% Beamer presentation template for the European University Institute
+\documentclass[8pt]{beamer}
+
+% Bibliography settings (if needed)
+\usepackage[backend=biber,style=numeric-comp,sorting=none]{biblatex}
+\addbibresource{bib.bib}
+
+% Graphics path
+\graphicspath{{Images/}{./}} 
+
+% Caption settings for figures and tables
+\usepackage{caption}
+\captionsetup{font=scriptsize,labelfont=scriptsize}
+\setbeamertemplate{caption}[numbered]
+
+% Beamer theme and color settings
+\usetheme{Szeged}
+\usecolortheme{lily}
+\usefonttheme{structurebold}
+\useinnertheme{rectangles}
+\useoutertheme{infolines}
+
+% Remove the headline (top navigation bar)
+\setbeamertemplate{headline}{}
+
+% Customize the footline (bottom navigation bar)
+\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
+\setbeamertemplate{footline}{%
+  \leavevmode
+  \hbox{%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1.5ex,center]{author in head/foot}%
+      \hspace{1em}\usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1.5ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\hypersetup{hidelinks}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2ex,dp=1.5ex,center]{pages}%
+      \usebeamerfont{footline}\usebeamercolor[fg]{footline}(\insertframenumber/\inserttotalframenumber)
+    \end{beamercolorbox}%
+  }%
+}
+
+% Hyperlink settings
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    linkcolor=red
+}
+
+% Additional packages
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[default]{opensans}
+\usepackage[absolute,overlay]{textpos}
+
+% Font settings
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{footnote}{size=\tiny}
+
+% Title page settings
+\title{\textbf{Your Presentation Title Here}}
+\author[Short Author]{Full Author Name\inst{1} \and Co-Author Name\inst{2}}
+\institute[EUI]{
+  \inst{1} European University Institute, Department of Political and Social Sciences \\
+  \inst{2} Affiliation of Co-Author \\
+  \smallskip
+  \textit{your.email@eui.eu}
+}
+\date[\today]{Presentation Subtitle \\ \today}
+
+% EUI Logo in the title page
+\titlegraphic{
+  \begin{tikzpicture}[overlay,remember picture]
+    \node[left=0.2cm] at (current page.30){
+      \includegraphics[width=3cm]{Images/eui logo.png}
+    };
+  \end{tikzpicture}
+}
+
+% Custom frame title format
+\setbeamertemplate{frametitle}{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,dp=0ex,left]{frametitle}%
+    \hspace*{2ex}\insertframetitle%
+  \end{beamercolorbox}
+}
+
+% Commands for appendix slides
+\usepackage{appendixnumberbeamer}
+\newcommand{\backupbegin}{
+  \newcounter{framenumberappendix}
+  \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+  \addtocounter{framenumberappendix}{-\value{framenumber}}
+  \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+
+% Command for notes below figures and tables
+\newcommand{\notebelow}[2][0.9\linewidth]{%
+  \begin{center}
+    \begin{minipage}{#1}
+      \footnotesize \textit{Note:} #2
+    \end{minipage}
+  \end{center}
+}
+
+\begin{document}
+
+% Title frame
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Table of contents (optional)
+%\begin{frame}
+%  \frametitle{Outline}
+%  \tableofcontents
+%\end{frame}
+
+% Introduction section
+\section{Introduction}
+
+\begin{frame}
+  \frametitle{Motivation}
+  % Add content here
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introduction}
+  % Add content here
+\end{frame}
+
+% Theory section
+\section{Theory}
+
+\begin{frame}
+  \frametitle{Theory}
+  \begin{itemize}
+    \item First theoretical point
+    \item Second theoretical point
+  \end{itemize}
+\end{frame}
+
+% Results section
+\section{Results}
+\label{results_slide}
+\begin{frame}
+  \frametitle{Results}
+  % Add content here
+
+  % Hyperlink to the appendix slide
+  \begin{center}
+    \hyperlink{appendix_additional_analysis}{\beamerbutton{See Additional Analysis in Appendix}}
+  \end{center}
+\end{frame}
+
+% Conclusion section
+\section{Conclusion}
+
+\begin{frame}
+  \frametitle{Conclusion}
+  \begin{itemize}
+    \item Summary of key findings
+    \item Implications for future research
+  \end{itemize}
+\end{frame}
+
+% Start of Appendix
+\appendix
+\backupbegin
+
+\begin{frame}
+  \centering
+  \vfill
+  {\Huge \textbf{Appendix}}
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \label{appendix_additional_analysis}
+  \frametitle{Additional Analysis}
+  % Add content for appendix
+
+  % Hyperlink back to the results slide
+  \begin{center}
+    \hyperlink{results_slide}{\beamerbutton{Back to Results}}
+  \end{center}
+\end{frame}
+
+\backupend
+
+\end{document}
